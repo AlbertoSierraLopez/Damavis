@@ -27,9 +27,9 @@ def numberOfAvailableDifferentPaths_aux(board, snake, depth, board_matrix, curre
 
         # Se mueve la serpiente en las direcciones posibles
         for new_head in movements:
+            board_matrix[tail[0], tail[1]] = 0
             if n > new_head[0] and new_head[0] >= 0 and m > new_head[1] and new_head[1] >= 0 and board_matrix[new_head[0], new_head[1]] == 0:
                 # Efectuar movimiento
-                board_matrix[tail[0], tail[1]] = 0
                 board_matrix[new_head[0], new_head[1]] = 1
                 old_tail = snake[-1]
                 snake = [new_head] + snake[:-1]
@@ -38,8 +38,8 @@ def numberOfAvailableDifferentPaths_aux(board, snake, depth, board_matrix, curre
                 different_paths += numberOfAvailableDifferentPaths_aux(board, snake, depth, board_matrix, current_depth+1)
 
                 # Deshacer este movimiento para poder hacer otras llamadas recursivas
-                board_matrix[tail[0], tail[1]] = 1
                 board_matrix[new_head[0], new_head[1]] = 0
                 snake = snake[1:] + [old_tail]
+            board_matrix[tail[0], tail[1]] = 1
 
         return different_paths
