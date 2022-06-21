@@ -43,10 +43,3 @@ def numberOfAvailableDifferentPaths_aux(board, snake, depth, board_matrix, curre
                 snake = snake[1:] + [old_tail]
 
         return different_paths
-
-
-board = [4, 3]
-snake = [[2, 2], [3, 2], [3, 1], [3, 0], [2, 0], [1, 0], [0, 0]]
-depth = 3
-
-print(numberOfAvailableDifferentPaths(board, snake, depth))
